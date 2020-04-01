@@ -17,11 +17,7 @@ function CustomDrawerContent({
 }) {
   const insets = useSafeArea();
   const screens = [
-    "Home",
-    "Woman",
-    "Man",
-    "Kids",
-    "New Collection",
+    "New Movies",
     "Profile",
     "Settings",
     "Components"
@@ -43,11 +39,6 @@ function CustomDrawerContent({
           </Block>
         </TouchableWithoutFeedback>
         <Block row>
-          <Block middle style={styles.pro}>
-            <Text size={16} color="white">
-              {profile.plan}
-            </Text>
-          </Block>
           <Text size={16} muted style={styles.seller}>
             {profile.type}
           </Text>

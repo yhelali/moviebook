@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform } from 'react-native';
-import { Block, Button, Text, theme } from 'galio-framework';
+import { Block, Button, Text, theme, Input } from 'galio-framework';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -12,13 +12,13 @@ export default class Onboarding extends React.Component {
     const { navigation } = this.props;
 
     handleEmail = (text) => {
-      this.setState({ email: text })
+      //this.setState({ email: text })
     }
     handlePassword = (text) => {
-        this.setState({ password: text })
+        //.setState({ password: text })
     }
     login = (email, pass) => {
-        alert('email: ' + email + ' password: ' + pass)
+        //alert('email: ' + email + ' password: ' + pass)
     }
 
     return (
@@ -34,7 +34,7 @@ export default class Onboarding extends React.Component {
           <Block flex space="around" style={{ zIndex: 2 }}>
             <Block>
               <Block>
-                <Text color="white" size={60}>MovieBook</Text>
+                <Text color="white" size={50}>MovieBook</Text>
               </Block>
               <Block row>
                 <Text color="white" size={60}>App</Text>
@@ -42,17 +42,13 @@ export default class Onboarding extends React.Component {
               <Text size={16} color='rgba(255,255,255,0.6)'>
                 Rate your favorite movies with Friends.
               </Text>
-              <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
+              <Input style = {styles.input}
                placeholder = "Email"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
                onChangeText = {this.handleEmail}/>
-              <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
+              <Input style = {styles.input}
                placeholder = "Password"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
+               password
+               viewPass
                onChangeText = {this.handlePassword}/>
             </Block>
             <Block center>

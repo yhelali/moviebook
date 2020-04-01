@@ -2,8 +2,8 @@
     "items": [
       {
         "id": "SE99",
-        "name": "Mad Max",
-        "image": "http://bababa",
+        "name": "Jumanji 3",
+        "image": "https://newsdio.com/wp-content/uploads/2020/03/Jake-Kasdan-talks-about-the-status-of-Jumanji-3-and.jpg",
         "description": "this movie is a movie ;)",
         "comments": [
           {
@@ -23,13 +23,13 @@
         ],
         "rating": {
           "total_users": 2,
-          "total_rating": 4.5
+          "total_rating": 7.2
         }
       },
       {
         "id": "SE99",
         "name": "Mad Max",
-        "image": "http://bababa",
+        "image": "http://image.jeuxvideo.com/medias-sm/144130/1441297966-8553-jaquette-avant.jpg",
         "description": "this movie is a movie ;)",
         "comments": [
           {
@@ -48,8 +48,8 @@
           }
         ],
         "rating": {
-          "total_users": 2,
-          "total_rating": 4.5
+          "total_users": 25,
+          "total_rating": 7.8
         }
       }
     ],
