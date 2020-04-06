@@ -321,7 +321,6 @@ export default class Components extends React.Component {
             {this.renderTableCell()}
             {this.renderNavigation()}
             {this.renderSocial()}
-            {this.renderCards()}
             {this.renderAlbum()}
         </ScrollView>
       </Block>

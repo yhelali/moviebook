@@ -2,7 +2,7 @@ import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
-import { Icon} from '../components/';
+import Icon from './Icon';
 
 import materialTheme from '../constants/Theme';
 
