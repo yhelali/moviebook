@@ -97,11 +97,11 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : materialTheme.COLORS.MUTED}
           />
         );
-      case "Sign Up":
+      case "Sign Out":
         return (
           <Icon
             size={16}
-            name="md-person-add"
+            name="ios-log-out"
             family="ionicon"
             color={focused ? "white" : materialTheme.COLORS.MUTED}
           />

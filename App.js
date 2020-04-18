@@ -1,23 +1,16 @@
-/*!
-
- =========================================================
- * Material Kit React Native - v1.4.0
- =========================================================
- * Product Page: https://demos.creative-tim.com/material-kit-react-native/
- * Copyright 2019 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-kit-react-native/blob/master/LICENSE)
- =========================================================
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
 import React from 'react';
 import { Platform, StatusBar, Image } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import { Block, GalioProvider } from 'galio-framework';
+import firebase from 'firebase';
 
-import { Images, products, materialTheme } from './constants/';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './reducers';
+
+import { Images, materialTheme } from './constants/';
 
 import { NavigationContainer } from '@react-navigation/native';
 import Screens from './navigation/Screens';
@@ -34,9 +27,6 @@ const assetImages = [
   Images.Onboarding,
 ];
 
-// cache product images
-products.map(product => assetImages.push(product.image));
-
 function cacheImages(images) {
   return images.map(image => {
     if (typeof image === 'string') {
@@ -52,7 +42,24 @@ export default class App extends React.Component {
     isLoadingComplete: false,
   };
 
+  componentDidMount() {
+    const config = {
+      apiKey: "AIzaSyCtFf0XDUEoe0YeN2YQfJHc8rVKTCvfMUg",
+      authDomain: "moviz-ff7ec.firebaseapp.com",
+      databaseURL: "https://moviz-ff7ec.firebaseio.com",
+      projectId: "moviz-ff7ec",
+      storageBucket: "moviz-ff7ec.appspot.com",
+      messagingSenderId: "688816801464",
+      appId: "1:688816801464:web:ab96e40afe6b9221c6d64d",
+      measurementId: "G-2XDCVHL0T2"
+    };
+
+    firebase.initializeApp(config);
+  }
+
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+    
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -63,14 +70,16 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <NavigationContainer>
-          <GalioProvider theme={materialTheme}>
-            <Block flex>
-              {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-              <Screens />
-            </Block>
-          </GalioProvider>
-        </NavigationContainer>
+        <Provider store={store}>
+          <NavigationContainer>
+            <GalioProvider theme={materialTheme}>
+              <Block flex>
+                {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+                <Screens />
+              </Block>
+            </GalioProvider>
+          </NavigationContainer>
+        </Provider>
       );
     }
   }

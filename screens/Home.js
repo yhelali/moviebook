@@ -4,10 +4,17 @@ import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Movie } from '../components/';
 
-const { width } = Dimensions.get('screen');
-import products from '../constants/products';
+import { connect } from 'react-redux';
+import { loadMovies } from '../actions';
 
-export default class Home extends React.Component {
+const { width } = Dimensions.get('screen');
+
+class Home extends React.Component {
+
+  componentDidMount = () => {
+    this.props.loadMovies(0);
+  }
+
   renderSearch = () => {
     const { navigation } = this.props;
     const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
@@ -45,19 +52,23 @@ export default class Home extends React.Component {
   }
 
   renderMovies = () => {
-    const movies = require('../mock/json/movies.json');
-
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.products}>
-        <Block flex>
-          <Movie movie={movies.items[0]} full />
-        </Block>
-        <Block flex>
-          <Movie movie={movies.items[1]} full />
-        </Block>
+          {this.renderMoviesList()}
       </ScrollView>
+    )
+  }
+
+  renderMoviesList = () => {
+    return (
+          this.props.movies.map(
+            movie =>
+            <Block flex>
+              <Movie movie={movie} full />
+            </Block>
+          )
     )
   }
 
@@ -69,6 +80,16 @@ export default class Home extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ movie }) => {
+  const { movies } = movie;
+
+  return { movies };
+};
+
+export default connect(mapStateToProps, {
+  loadMovies
+})(Home);
 
 const styles = StyleSheet.create({
   home: {

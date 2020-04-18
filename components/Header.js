@@ -21,12 +21,12 @@ const ChatButton = ({isWhite, style, navigation}) => (
   </TouchableOpacity>
 );
 
-const BasketButton = ({isWhite, style, navigation}) => (
+const FriendButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
-      family="GalioExtra"
+      family="ionicon"
       size={16}
-      name="basket-simple"
+      name="md-person-add"
       color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
     <Block middle style={styles.notify} />
@@ -56,7 +56,7 @@ class Header extends React.Component {
     if (title === 'Title') {
       return [
         <ChatButton key='chat-title' navigation={navigation} isWhite={white} />,
-        <BasketButton key='basket-title' navigation={navigation} isWhite={white} />
+        <FriendButton key='friend-add' navigation={navigation} isWhite={white} />
       ]
     }
 
@@ -64,32 +64,32 @@ class Header extends React.Component {
       case 'Home':
         return ([
           <ChatButton key='chat-home' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-home' navigation={navigation} isWhite={white} />
+          <FriendButton key='basket-categories' navigation={navigation} isWhite={white} />
         ]);
       case 'Deals':
         return ([
           <ChatButton key='chat-categories' navigation={navigation} />,
-          <BasketButton key='basket-categories' navigation={navigation} />
+          <FriendButton key='basket-categories' navigation={navigation} />
         ]);
       case 'Categories':
         return ([
           <ChatButton key='chat-categories' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-categories' navigation={navigation} isWhite={white} />
+          <FriendButton key='basket-categories' navigation={navigation} isWhite={white} />
         ]);
       case 'Category':
         return ([
           <ChatButton key='chat-deals' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-deals' navigation={navigation} isWhite={white} />
+          <FriendButton key='basket-deals' navigation={navigation} isWhite={white} />
         ]);
       case 'Profile':
         return ([
           <ChatButton key='chat-profile' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-deals' navigation={navigation} isWhite={white} />
+          <FriendButton key='basket-deals' navigation={navigation} isWhite={white} />
         ]);
       case 'Product':
         return ([
           <SearchButton key='search-product' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-product' navigation={navigation} isWhite={white} />
+          <FriendButton key='basket-product' navigation={navigation} isWhite={white} />
         ]);
       case 'Search':
         return ([
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   navbar: {
     paddingVertical: 0,
     paddingBottom: theme.SIZES.BASE * 1.5,
-    paddingTop: iPhoneX ? theme.SIZES.BASE * 4 : theme.SIZES.BASE,
+    paddingTop: iPhoneX ? theme.SIZES.BASE : theme.SIZES.BASE,
     zIndex: 5,
   },
   shadow: {

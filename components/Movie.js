@@ -1,6 +1,6 @@
 import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
-import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback, View } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import Icon from './Icon';
 
@@ -22,12 +22,16 @@ class Movie extends React.Component {
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { movie: movie })}>
           <Block flex space="between" style={styles.productDescription}>
+            <View>
             <Text size={14} style={styles.productTitle}>{movie.name}</Text>
+            </View>
+            <View>
             <Text size={16} color={materialTheme.COLORS.WARNING}>
               {movie.rating.total_rating}{" "}
               <Icon name="shape-star" family="GalioExtra" size={14} />
             </Text>
             <Text size={12} muted={!priceColor} color={priceColor}>{movie.rating.total_users} friends</Text>
+            </View>
           </Block>
         </TouchableWithoutFeedback>
       </Block>
