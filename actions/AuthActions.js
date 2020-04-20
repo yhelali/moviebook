@@ -20,17 +20,21 @@ export const loginUser = ({ login, password , navigation }) => {
     firebase.auth().signInWithEmailAndPassword(login, password)
       .then(user => loginUserSuccess(dispatch, user, navigation))
       .catch((error) => {
-        console.warn(error);
+        //console.warn(error);
 
         firebase.auth().createUserWithEmailAndPassword(login, password)
           .then(user => loginUserSuccess(dispatch, user, navigation))
-          .catch(() => loginUserFail(dispatch));
+          .catch((error) => loginUserFail(dispatch, error));
       });
   };
 };
 
-const loginUserFail = (dispatch) => {
-  dispatch({ type: LOGIN_USER_FAIL });
+const loginUserFail = (dispatch, error) => {
+  dispatch({ 
+    type: LOGIN_USER_FAIL,
+    payload: error.message
+    
+  });
 };
 
 const loginUserSuccess = (dispatch, user, navigation) => {
@@ -39,5 +43,5 @@ const loginUserSuccess = (dispatch, user, navigation) => {
     payload: user
   });
 
-  navigation.navigate('App');
+  navigation.navigate('App', { user });
 };

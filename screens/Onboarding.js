@@ -19,8 +19,6 @@ class Onboarding extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
-
     return (
       <View>
       <StatusBar barStyle="light-content" />
@@ -31,9 +29,9 @@ class Onboarding extends React.Component {
           <Block flex space="around" style={{ zIndex: 2 }}>
             <Block>
               <Block>
-                <Text color="white" size={50}>MoviZ</Text>
+                <Text color={materialTheme.COLORS.BUTTON_COLOR} size={50}>MoviZ</Text>
               </Block>
-              <Text size={16} color='rgba(255,255,255,0.6)'>
+              <Text size={16} color={materialTheme.COLORS.BUTTON_COLOR}>
                 Rate your favorite movies with Friends.
               </Text>
               <Input style = {styles.input}
@@ -46,11 +44,12 @@ class Onboarding extends React.Component {
                viewPass
                value = {this.props.password}
                onChangeText = {value => this.props.loginUpdate({ prop: 'password', value })}/>
-            </Block>
-            <Block center>
+               <Text size={16} color={materialTheme.COLORS.ERROR}>
+                {this.props.error}
+              </Text>
               <Button
                 shadowless
-                loading
+                loading = {this.props.loading}
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
                 onPress={this.loginUserPress.bind(this)}>
@@ -62,8 +61,8 @@ class Onboarding extends React.Component {
       </ScrollView>
       <Block flex center>
         <ImageBackground
-          source={{  uri: Images.Onboarding }}
-          style={{ height: height, width: width, marginTop: '-100%', zIndex: -1 }}
+          
+          style={{ height: height, width: width, marginTop: '-100%', zIndex: -1, backgroundColor: '#F6EDED'}}
         />
       </Block>
       </View>
@@ -72,9 +71,9 @@ class Onboarding extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { login, password } = state.auth;
+  const { login, password, loading, error } = state.auth;
   
-  return { login, password, navigation: ownProps.navigation };
+  return { login, password, loading, error, navigation: ownProps.navigation };
 };
 
 export default connect(mapStateToProps, {
@@ -83,7 +82,7 @@ export default connect(mapStateToProps, {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.COLORS.BLACK,
+    backgroundColor: '#F6EDED'
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 2,
